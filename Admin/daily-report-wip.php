@@ -30,7 +30,13 @@
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="css/buttons.bootstrap4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="css/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="css/toastr.min.css">
 </head>
+
+<?php session_start(); ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -300,6 +306,39 @@
     </div>
     <!-- ./wrapper -->
 
+
+    <?php
+    if (@$_SESSION['success']) {
+    ?>
+        <script>
+            // swal("Good job!", "<?php //echo $_SESSION['success']; 
+                                    ?>", "success");
+            Swal.fire(
+                "Good job!",
+                "<?php echo $_SESSION['success']; ?>",
+                "success"
+            )
+        </script>
+    <?php
+        unset($_SESSION['success']);
+    }
+
+    if (@$_SESSION['failed']) {
+    ?>
+        <script>
+            // swal("Good job!", "<?php //echo $_SESSION['success']; 
+                                    ?>", "success");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "<?php echo $_SESSION['failed']; ?>"
+            })
+        </script>
+    <?php
+        unset($_SESSION['failed']);
+    }
+    ?>
+
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -349,6 +388,12 @@
     <script src="js/buttons.html5.min.js"></script>
     <script src="js/buttons.print.min.js"></script>
     <script src="js/buttons.colVis.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="js/bs-custom-file-input.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="../../plugins/toastr/toastr.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function() {
@@ -368,6 +413,16 @@
                 "responsive": true,
             });
         });
+
+        $(function() {
+            bsCustomFileInput.init();
+        });
+
+        Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        )
     </script>
 </body>
 

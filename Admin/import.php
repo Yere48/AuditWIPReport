@@ -132,8 +132,10 @@ if (isset($_POST['btn_import'])) {
                 }
             }
         }
-        echo "Records inserted successfully.";
+        // echo "Records inserted successfully.";
+        $_SESSION["success"] = 'Import Data Successfully';
     } else {
-        echo "Upload only CSV or Excel file.";
+        // echo "Upload only CSV or Excel file.";
+        $_SESSION["failed"] = 'Incorrectly Imported File, Upload only CSV or Excel file';
     }
 }
